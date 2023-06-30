@@ -20,9 +20,6 @@ export default function Card(props) {
             setIsFlipped(false);
         }
     }, [selectcard])
-    // restgame = () => {
-    //     setIsFlipped(false);
-    // }
     return (
         <>
             <div className="flip-container " onClick={handleClick} key={id}>

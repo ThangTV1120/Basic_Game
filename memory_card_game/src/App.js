@@ -10,13 +10,17 @@ import Fox from './images/Fox.jpg';
 import Panda from './images/Panda.jpg';
 import Tiger from './images/Tiger.jpg';
 import GameOver from './GameOver';
+import Watch from './Watch';
 function App() {
   const values = [Bear, Cat, Dog, Duck, Elephants, Fox, Panda, Tiger];
   const [selectcard, setSelectcard] = useState([]);
   const [card, setCard] = useState([]);
   const [socer, setSocer] = useState(0);
   const [gameover, setGameover] = useState(false);
-  // const [isrest, setIsrest] = useState(false);
+  const [isName, setIsName] = useState(false);
+  const [isTime, setIsTime] = useState(false);
+  const [timePlay, settimePlay] = useState(0);
+  const [Name, setName] = useState("");
 
   const begin = () => {
     const sort = [...values, ...values].sort(() => Math.random() - 0.5);
@@ -45,6 +49,27 @@ function App() {
   const restgame = () => {
     begin();
     setSelectcard([]);
+    settimePlay(0);
+    // console.log(timePlay)
+  }
+  const outgame = () => {
+    setIsName(false);
+    setIsTime(false);
+    setName("")
+    restgame();
+  }
+  const handlerName = (envent) => {
+    setName(envent.target.value);
+    // console.log(Name)
+  }
+  const handlerStart = () => {
+    if (Name) {
+      setIsName(true);
+      setIsTime(true);
+    }
+    else {
+      alert("Vui long nhap ten nguoi choi")
+    }
   }
   useEffect(() => {
     begin();
@@ -66,56 +91,67 @@ function App() {
     }
   }, [socer])
   return (
-    <>
-      {gameover ?
-        <GameOver
-          setGameover={setGameover} />
-        :
-        <>
-          <div className='restgame'><button className='btn_restgame'  onClick={restgame}>
-            Rest Game
-          </button></div>
-          <div className='Game'>
-            <div className='col_1'>
-              {card.map((index) => {
-                // console.log(index.flipped)
-                return (
-                  <>
-                    <Card
-                      show={index}
-                      id={index.id}
-                      // restgame={restgame}
-                      // isclass={isclass}
-                      setSelectcard={setSelectcard}
-                      // setIsclass={setIsclass}
-                      selectcard={selectcard}
-                    />
-                  </>
-                )
+    <>{!isName ?
+      <div className='start'>
+        <input type="text" className='start_playername' value={Name} placeholder='Nhap ten nguoi choi' onChange={(envent) => { handlerName(envent) }} />
+        <button className='start_btn' onClick={() => { handlerStart() }}>Start Game </button>
+      </div>
+      :
+      <>
+        {gameover ?
+          <GameOver
+            setGameover={setGameover}
+            Name={Name}
+            settimePlay={settimePlay}
+            timePlay={timePlay} />
+          :
+          <>
+            <div className='head'>
+              <div className='head_playername'>
+                <span className='head_playername--text'>Wellcome {Name}</span>
+              </div>
+              <div className='head_timeplay'>
+                <Watch
+                isTime={isTime}
+                timePlay={timePlay}
+                settimePlay={settimePlay}
+                >
 
-              })}
+                </Watch>
+                </div>
+              <div className='head_btn'>
+                <button className='head_btn-out' onClick={outgame}>
+                  Out Game
+                </button>
+                <button className='head_btn-restgame' onClick={restgame}>
+                  Rest Game
+                </button>
+              </div>
+
             </div>
+            <div className='Game'>
+              <div className='col'>
+                {card.map((item, index) => {
+                  // console.log(index.flipped)
+                  return (
+                    <>
+                      <Card
+                        show={item}
+                        id={index}
+                        // restgame={restgame}
+                        // isclass={isclass}
+                        setSelectcard={setSelectcard}
+                        selectcard={selectcard}
+                        
+                      />
+                    </>
+                  )
+                })}
+              </div>
+            </div></>}
+      </>
+    }
 
-            {/* {socer.length===0 ?  console.log(socer.length) : "" } */}
-            {/* <div className='col_4'>
-          <Card
-            show={Bear}
-            id="Bear"
-          />
-          <Card
-            show={Cat}
-            id="Cat"
-          />
-          <Card
-            show={Dog}
-            id="Dog"
-          />
-          <Card
-            show={Duck}
-            id="Duck"
-          />
-        </div> */}
-          </div></>}
 
     </>
   );

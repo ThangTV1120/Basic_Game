@@ -23,9 +23,7 @@ code {
 
 }
 
-.col_1,
-.col_2,
-.col_3 {
+.col{
   /* width: 200px; */
   align-items: center;
   display: flex;
@@ -72,26 +70,39 @@ code {
   transform: rotateY(180deg);
 }
 
-/* .Card{
-  
+.head {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  margin-top: 10px;
+  justify-content: space-between;
 }
-.back:hover{
-  transition: 1s;
-  transform: rotateY(180deg);
-} */
-.restgame {
+.head_playername{
+  height: 60px;
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
 }
-
-.btn_restgame {
+.head_playername--text{
+  font-size: 30px;
+}
+.head_timeplay{
+  /* margin-left: 20px; */
+}
+.head_btn{
+  /* flex: 2; */
+  
+  /* margin-left: 20px; */
+ gap: 10px;
+}
+.head_btn-out,.head_btn-restgame {
+  margin: 5px;
   height: 60px;
   width: 90px;
 }
 
-.btn_restgame:hover {
+.head_btn-out:hover,.head_btn-restgame:hover {
   background-color: red;
   cursor: pointer;
 
@@ -101,56 +112,42 @@ code {
   display: flex;
   justify-content: center;
   margin-top: 200px;
+  flex-direction: column;
   align-items: center;
   /* background-color: bla; */
 }
-
+.gameover_content{
+  margin: 10px;
+  font-size: 40px;
+  background-color:aqua;
+}
+.gameover_btn{
+  height: 30px;
+  font-size: 20px;
+  cursor: pointer;
+}
 .remove {
   display: none;
 }
-
-/* .back {
-  transform: rotateY(180deg);
+.start{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  align-items: center;
+  gap: 8px;
 }
-.flipper {
-  transition: 0.6s;
-  transform-style: preserve-3d;
-  position: relative;
-  transform-origin: center;
-  width: 100%;
-  height: 100%;
-} */
-/* .flip-container {
-  perspective: 1000px;
-  width: 200px;
-  height: 200px;
+.start_playername{
+height: 35px;
+font-size: 20px;
+border-radius: 10px;
 }
-
-.flipper {
-  transition: 0.6s;
-  transform-style: preserve-3d;
-  position: relative;
-  transform-origin: center;
-  width: 100%;
-  height: 100%;
+.start_btn{
+  height: 35px;
+  background-color: aqua;
+  border-radius: 10px;
+  cursor: pointer;
 }
-
-.front, .back {
-  backface-visibility: hidden;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.playername{
+  height: 50px;
+  text-align: center;
 }
-
-.front {
-  z-index: 2;
-  transform: rotateY(0deg);
-}
-
-
-
-.flipped {
-  transform: rotateY(180deg);
-} */

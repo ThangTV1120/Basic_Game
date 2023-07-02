@@ -27,10 +27,10 @@ export default function Watch(props) {
         
     }, [isActive])
     return (
-        <div className="app">
-            <div className='stopwatch-card'>
-                <p>{timePlay}</p> {/* here we will show timer */}
+        
+            <div className='watch'>
+                <p className='watch_card'>{timePlay}s</p> {/* here we will show timer */}
             </div>
-        </div>
+        
     )
 }

@@ -11,6 +11,7 @@ import Panda from './images/Panda.jpg';
 import Tiger from './images/Tiger.jpg';
 import GameOver from './GameOver';
 import Watch from './Watch';
+import { fetAllCard } from './service/CardAPI';
 function App() {
   const values = [Bear, Cat, Dog, Duck, Elephants, Fox, Panda, Tiger];
   const [selectcard, setSelectcard] = useState([]);
@@ -21,7 +22,7 @@ function App() {
   const [isTime, setIsTime] = useState(false);
   const [timePlay, settimePlay] = useState(0);
   const [Name, setName] = useState("");
-
+  const [charts, setChart] = useState([]);
   const begin = () => {
     const sort = [...values, ...values].sort(() => Math.random() - 0.5);
     const result = sort.map((value, index) => ({ value, flipped: false, id: index + 1 }));
@@ -63,16 +64,30 @@ function App() {
     // console.log(Name)
   }
   const handlerStart = () => {
+  
     if (Name) {
       setIsName(true);
       setIsTime(true);
+
     }
     else {
       alert("Vui long nhap ten nguoi choi")
     }
   }
+  const getCard = async () => {
+    let res = await fetAllCard();
+    // let resData=await res.json();
+    if (res && res.data) {
+      // let ress=res.data.sort((a,b)=>a.timeplay-b.timeplay);
+      setChart(res.data.sort((a,b)=>a.timeplay-b.timeplay));
+      
+      // console.log(ress);
+    }
+    console.log(res.data);
+  }
   useEffect(() => {
     begin();
+    getCard();
   }, [])
   useEffect(() => {
     if (selectcard.length === 2) {
@@ -90,6 +105,7 @@ function App() {
       setGameover(true)
     }
   }, [socer])
+
   return (
     <>{!isName ?
       <div className='start'>
@@ -103,7 +119,8 @@ function App() {
             setGameover={setGameover}
             Name={Name}
             settimePlay={settimePlay}
-            timePlay={timePlay} />
+            timePlay={timePlay}
+            getCard={getCard} />
           :
           <>
             <div className='head'>
@@ -112,13 +129,12 @@ function App() {
               </div>
               <div className='head_timeplay'>
                 <Watch
-                isTime={isTime}
-                timePlay={timePlay}
-                settimePlay={settimePlay}
+                  isTime={isTime}
+                  timePlay={timePlay}
+                  settimePlay={settimePlay}
                 >
-
                 </Watch>
-                </div>
+              </div>
               <div className='head_btn'>
                 <button className='head_btn-out' onClick={outgame}>
                   Out Game
@@ -130,7 +146,31 @@ function App() {
 
             </div>
             <div className='Game'>
-              <div className='col'>
+              <div className='Game-chart'>
+                <b className='Game-chart--context'>BXH</b>
+                <table className='Game-chart--tb'>
+                  <thead>
+                    <tr className='tb-head'>
+                      <th>Top</th>
+                      <th>Name</th>
+                      <th>Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {charts && charts.length>0 &&charts.map((item,index)=>{
+                      return(
+                        <tr key={`users-${index}`}>
+                          <td>{index+1}</td>
+                          <td>{item.name}</td>
+                          <td>{item.timeplay}s</td>
+                
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              <div className='Game-col'>
                 {card.map((item, index) => {
                   // console.log(index.flipped)
                   return (
@@ -142,7 +182,7 @@ function App() {
                         // isclass={isclass}
                         setSelectcard={setSelectcard}
                         selectcard={selectcard}
-                        
+
                       />
                     </>
                   )

@@ -1,11 +1,21 @@
 import React from 'react'
+import { postCard } from './service/CardAPI';
 
 const GameOver = (props) => {
-  const { setGameover, timePlay, Name, settimePlay } = props;
-  const handleClick = () => {
+  const { setGameover, timePlay, Name, settimePlay,getCard } = props;
+  const handleClick = async () => {
+    
+    // let resuls = await fetAllCard();
 
-    setGameover(false)
-    settimePlay(0);
+
+    let res =await postCard(Name,timePlay);
+    console.log(res)
+    if(res&&res.data){
+      getCard();
+      setGameover(false)
+      settimePlay(0);
+    }
+   
   }
   return (
     <div className='gameover'>

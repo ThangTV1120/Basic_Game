@@ -1,0 +1,160 @@
+body {
+    margin: 0;
+   
+  }
+
+
+.head {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    margin-top: 10px;
+    justify-content: space-between;
+
+    .head_playername {
+        height: 60px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .head_playername--text {
+            font-size: 30px;
+        }
+    }
+
+    .head_timeplay {
+        .watch {
+            .watch_card {
+                font-size: 30px;
+            }
+        }
+    }
+
+    .head_btn {
+        gap: 10px;
+
+        .head_btn-out,
+        .head_btn-restgame {
+            margin: 5px;
+            height: 60px;
+            width: 90px;
+        }
+
+        .head_btn-out:hover,
+        .head_btn-restgame:hover {
+            background-color: red;
+            cursor: pointer;
+
+        }
+    }
+}
+
+
+
+
+.Game {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    .Game-col {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .flip-container {
+            /* flex: 0 0 25%; Chia mỗi cột chiếm 25% chiều rộng của container */
+            flex-basis: 25%;
+            background-size: cover;
+
+            .back,
+            .Card {
+                margin-top: 5px;
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                cursor: pointer;
+
+                .image {
+                    width: 140px;
+                    height: 120px;
+                    border-radius: 20px;
+                }
+            }
+
+            .Card {
+                /* z-index: 2; */
+                transition: 0.5s;
+                transform: rotateY(0deg);
+            }
+
+            .back {
+                transition: 0.5s;
+                transform: rotateY(180deg);
+            }
+        }
+    }
+
+    .Game-chart {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .Game-chart--context {
+            font-size: 20px;
+            padding: 8px;
+        }
+
+        .Game-chart--tb {
+            width: 400px;
+
+            .tb-head {
+                text-align: left;
+                padding: 8px;
+            }
+        }
+    }
+}
+
+.gameover {
+    display: flex;
+    justify-content: center;
+    margin-top: 200px;
+    flex-direction: column;
+    align-items: center;
+
+    .gameover_content {
+        margin: 10px;
+        font-size: 40px;
+        background-color: aqua;
+    }
+
+    .gameover_btn {
+        height: 30px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+}
+
+.start {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    align-items: center;
+    gap: 8px;
+
+    .start_playername {
+        height: 35px;
+        font-size: 20px;
+        border-radius: 10px;
+    }
+
+    .start_btn {
+        height: 35px;
+        background-color: aqua;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+}

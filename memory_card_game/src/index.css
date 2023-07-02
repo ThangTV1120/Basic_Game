@@ -14,16 +14,16 @@ code {
 
 .Game {
   display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
+  /* gap: 30px; */
+  /* flex-wrap: wrap; */
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   margin-top: 20px;
-  margin-left: 50px;
+/* flex-direction: row; */
 
 }
 
-.col{
+.Game-col{
   /* width: 200px; */
   align-items: center;
   display: flex;
@@ -39,7 +39,7 @@ code {
 }
 
 .image {
-  width: 150px;
+  width: 140px;
   height: 120px;
   border-radius: 20px;
 
@@ -66,8 +66,27 @@ code {
   transform: rotateY(180deg);
 }
 
-.flip-container.flipped .flipper {
+/* .flip-container.flipped .flipper {
   transform: rotateY(180deg);
+} */
+
+.Game-chart{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Game-chart--tb{
+  /* width: 100%; */
+  width: 400px;
+}
+.tb-head{
+  text-align: left;
+  padding: 8px;
+ }
+.Game-chart--context{
+  /* border-collapse: collapse; */
+  font-size: 20px;
+  padding: 8px;
 }
 
 .head {
@@ -89,6 +108,9 @@ code {
 }
 .head_timeplay{
   /* margin-left: 20px; */
+}
+.watch_card{
+  font-size: 30px;
 }
 .head_btn{
   /* flex: 2; */
